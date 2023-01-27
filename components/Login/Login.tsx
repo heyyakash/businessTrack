@@ -34,7 +34,7 @@ const LoginPage = () => {
             Sign In
           </button>
           <a className="text-indigo-500 hover:text-indigo-600" href="#">
-            Forgot your password?
+            
           </a>
         </div>
       </form>
