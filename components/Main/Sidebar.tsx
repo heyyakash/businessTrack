@@ -1,10 +1,12 @@
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { HiMenuAlt2 } from 'react-icons/hi'
 
 const Sidebar = () => {
+  const[option,setOption] = useState<string | null>(null)
   const [type, setType] = useState<String>("Public")
   const [rating,setRating] = useState<1 | 2 | 3 | 4 | 5>(5)
-  const list: string[] = ['Fintech', 'Sports', 'Technology', 'EdTech', 'Automative', 'Electronics', 'Health', 'Food', 'Travel']
+  const list: string[] = [ "AgriTech", "Health", "Logistics", "Fintech", "Entertainment", "EdTech", "Enterprise" ]
   return (
     <div className='h-full flex flex-col p-4 px-6 w-[400px]'>
       <div className=' flex gap-2 text-xl items-center'>
@@ -25,10 +27,11 @@ const Sidebar = () => {
       <div className='mt-5'>
         <h3 className="text-md font-semibold">Category</h3>
         <div className='text-md flex gap-4 h-[180px] overflow-auto overflow-x-hidden mt-3 flex-col'>
+          
           {list.map((category: String) => {
             return (
               <div key = {category.toString()} className='flex pr-3  flex-row-reverse text-sm font-[400] justify-between '>
-                <input className='checked:accent-black scale-[1.5]' type="checkbox" id={category.toString()} value={category.toString()} name={category.toString()} />
+                <input checked = {option===category.toString()?true:false} onChange={()=>setOption(category.toString())} className='checked:accent-black scale-[1.5]' type="checkbox" id={category.toString()} value={category.toString()} name={category.toString()} />
                 <label htmlFor={category.toString()}>{category}</label>
               </div>)
           }
@@ -47,7 +50,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className='mt-auto'>
+      <div>
         <h3 className='text-md font-semibold'>Company Rating</h3>
         <div className='mt-3 flex gap-2'>
           <p className={`filterButton ${rating===1?`bg-black text-white`:''}`} onClick = {()=>setRating(1)}>1</p>
@@ -57,7 +60,7 @@ const Sidebar = () => {
           <p className={`filterButton ${rating===5?`bg-black text-white`:''}`} onClick = {()=>setRating(5)}>5</p>
         </div>
       </div>
-
+          <Link href = {`/company/search?domain=${option}`} className='filterButton hover:bg-black hover:text-white mt-2'>Submit</Link>
 
 
     </div>

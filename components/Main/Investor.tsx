@@ -1,8 +1,32 @@
-import React from 'react'
+import obj from '@/Types/Data'
+import React, { useEffect, useState } from 'react'
 import {TiTick} from 'react-icons/ti'
 import List from './List'
 import TopCompanies from './TopCompanies'
 const Investor = () => {
+
+  useEffect(()=>{
+    fetchdata()
+  },[])
+
+  const fetchdata = async() => {
+    const res =await getData()
+    let arr:string[] = []
+    res.map((x:obj)=>{
+      if(!arr.includes(x.Domain)) return arr.push(x.Domain)
+    })
+    console.log(arr)
+    setData(res.slice(0,3))
+    // console.log(res)
+  }
+
+  const [data,setData] = useState([])
+  const getData = async () => {
+    const res = await fetch(`http://localhost:4000/`)
+    const result = await res.json()
+    return result
+
+  }
   return (
     <>
     <div className='w-full border-l p-8 '>
@@ -19,8 +43,8 @@ const Investor = () => {
                 <img src="/box.png" alt="box" className='-right-[3rem] h-[200px] absolute' />
             </div>
         </div>
-        <TopCompanies />
-        <List />
+        <TopCompanies data = {data} />
+        <List data = {data} />
     </div>
     </>
   )
