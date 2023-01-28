@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { BsApple } from 'react-icons/bs'
 import CustomRow from './CustomRow'
+import RadarChart from './RadarChart'
 
 const CompanySidebar = () => {
     const router = useRouter()
@@ -14,6 +15,9 @@ const CompanySidebar = () => {
         <p className='self-center text-xl font-semibold mt-7'>
             {slug}
         </p>
+        <div className='w-full h-[300px]'>
+            <RadarChart />
+        </div>
         <div className='bg-stone-100 w-full mt-7 flex flex-col gap-2 p-2 rounded-lg'>
             <CustomRow parameter='Domain' value='Fintech' />
             <CustomRow parameter='Sales Growth' value='10%' />

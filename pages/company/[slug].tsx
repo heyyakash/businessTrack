@@ -2,6 +2,7 @@ import CustomRow from '@/components/Main/CustomRow'
 import { useRouter } from 'next/router'
 import React, { ReactNode } from 'react'
 import { BsApp, BsApple, BsChat, BsFacebook, BsLinkedin } from 'react-icons/bs'
+import RadarChart from '@/components/Main/RadarChart'
 
 const Company = () => {
   const router = useRouter()
@@ -49,6 +50,7 @@ const Company = () => {
           <CustomRow parameter='Marketing' value = {0.5} />
           <CustomRow parameter='Administration' value = {0.5} />
         </div>
+      <div></div>
     </div>
   )
 }

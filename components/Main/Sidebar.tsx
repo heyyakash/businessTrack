@@ -27,7 +27,7 @@ const Sidebar = () => {
         <div className='text-md flex gap-4 h-[180px] overflow-auto overflow-x-hidden mt-3 flex-col'>
           {list.map((category: String) => {
             return (
-              <div className='flex pr-3  flex-row-reverse text-sm font-[400] justify-between '>
+              <div key = {category.toString()} className='flex pr-3  flex-row-reverse text-sm font-[400] justify-between '>
                 <input className='checked:accent-black scale-[1.5]' type="checkbox" id={category.toString()} value={category.toString()} name={category.toString()} />
                 <label htmlFor={category.toString()}>{category}</label>
               </div>)
